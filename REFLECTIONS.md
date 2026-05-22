@@ -26,4 +26,9 @@ Các guardrail em muốn thêm:
 
 ## 3. AI assistance
 
-Em dùng AI để giải thích requirement, đề xuất flow implement, và hỗ trợ viết code logic các func trong từng file pytho. Tuy nhiên, em vẫn tự đọc test cases, chạy pytest, sửa lỗi theo expected behavior, và verify bằng AWS CLI thật. Những phần em kiểm soát kỹ nhất là confirm safety, S3 non-empty guard, dry-run behavior, và AWS profile/region setup.
+Em dùng AI để giải thích requirement, đề xuất flow implement, và hỗ trợ viết code logic các func trong từng file python, giải thích các test cases, hướng dẫn chạy pytest, sửa lỗi theo expected behavior, và verify bằng AWS CLI thật; đã có đảm bảo cho việc confirm safety, S3 non-empty guard, dry-run behavior, và AWS profile/region setup.
+
+## P/s:
+
+    Em chạy ra output theo như yêu cầu thì ko dùng application mà sử dụng `Project = hexacode`
+    
