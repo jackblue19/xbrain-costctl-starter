@@ -40,6 +40,12 @@
 
 ---
 
+![alt text](image-5.png)
 
+---
 
+    $date = Get-Date -Format "yyyy-MM-dd"
 
+    python .\costctl.py --region us-west-2 list ec2 `  | Out-File ".\sample_output\list_ec2_$date.txt" -Encoding utf8
+
+    python .\costctl.py --region us-west-2 cost --tag Project=hexacode --days 7

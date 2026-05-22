@@ -1,0 +1,21 @@
+(.venv) D:\AppsToCode\VSCODE\aws-lab\costctl\xbrain-costctl-starter  > python .\costctl.py --region us-west-2 cost --tag Project=hexacode --days 7
+Cost for Project=hexacode over last 7 days (2026-05-15 → 2026-05-22):
+------------------------------------------------------------
+AWS Network Firewall                             $ 5.07
+Amazon Relational Database Service               $ 2.38
+Amazon Virtual Private Cloud                     $ 1.32
+EC2 - Other                                      $ 0.54
+Amazon ElastiCache                               $ 0.32
+Amazon Elastic Load Balancing                    $ 0.14
+AWS WAF                                          $ 0.11
+Amazon Elastic Compute Cloud - Compute           $ 0.04
+AWS Lambda                                       $ 0.04
+AWS Secrets Manager                              $ 0.01
+AmazonCloudWatch                                 $ 0.01
+Amazon Simple Queue Service                      $ 0.00
+Amazon EC2 Container Registry (ECR)              $ 0.00
+Amazon Simple Storage Service                    $ 0.00
+Amazon Elastic File System                       $ 0.00
+Amazon Simple Notification Service               $ 0.00
+------------------------------------------------------------
+TOTAL                                            $ 9.98
