@@ -52,18 +52,87 @@ The first time you run this, double-check against the AWS Console
 (Cost Management → Cost Explorer → filter by same tag + same range).
 Output should match within a few cents.
 """
+
+"""cost — show cost of resources matching a tag, over the last N days."""
+
 import boto3
 from collections import defaultdict
 from datetime import date, timedelta
+from botocore.exceptions import ClientError
 
 from commands._common import parse_kv
 
 
 def run(args):
-    """Entry point.
-
-    Args set by argparse:
-        args.tag   — "key=value" string (REQUIRED)
-        args.days  — int, default 7
     """
-    raise NotImplementedError("TODO: implement cost — see module docstring")
+    Entry point.
+    """
+    tag_key, tag_val = parse_kv(args.tag)
+
+    end = date.today()
+    start = end - timedelta(days=args.days)
+
+    ce = boto3.client("ce")
+
+    try:
+        resp = ce.get_cost_and_usage(
+            TimePeriod={
+                "Start": start.isoformat(),
+                "End": end.isoformat(),
+            },
+            Granularity="DAILY",
+            Metrics=["UnblendedCost"],
+            Filter={
+                "Tags": {
+                    "Key": tag_key,
+                    "Values": [tag_val],
+                }
+            },
+            GroupBy=[
+                {
+                    "Type": "DIMENSION",
+                    "Key": "SERVICE",
+                }
+            ],
+        )
+    except ClientError as e:
+        err = e.response.get("Error", {})
+        code = err.get("Code", "Unknown")
+        message = err.get("Message", str(e))
+        print(f"AWS error [{code}]: {message}")
+        return
+
+    totals = defaultdict(float)
+
+    for day in resp.get("ResultsByTime", []):
+        for group in day.get("Groups", []):
+            service = group.get("Keys", ["Unknown"])[0]
+            amount = (
+                group.get("Metrics", {}).get("UnblendedCost", {}).get("Amount", "0")
+            )
+            totals[service] += float(amount)
+
+    print(
+        f"Cost for {tag_key}={tag_val} over last {args.days} days "
+        f"({start.isoformat()} → {end.isoformat()}):"
+    )
+    print("-" * 60)
+
+    if not totals:
+        print(
+            "No cost data found. Try a larger --days value or activate cost allocation tags."
+        )
+        print("-" * 60)
+        print("TOTAL                                            $ 0.00")
+        return
+
+    grand_total = 0.0
+
+    for service, amount in sorted(
+        totals.items(), key=lambda item: item[1], reverse=True
+    ):
+        grand_total += amount
+        print(f"{service:<48} $ {amount:,.2f}")
+
+    print("-" * 60)
+    print(f"{'TOTAL':<48} $ {grand_total:,.2f}")
