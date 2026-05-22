@@ -271,18 +271,18 @@ Add a `REFLECTIONS.md` to your repo. Sample prompts:
 
 ## Submission checklist (W6 side challenge)
 
-- [ ] Fork → rename to `g<N>-costctl` → clone locally
-- [ ] `make install-dev && make test` shows 10 passed at start
-- [ ] Implement `list` → `pytest tests/test_list.py` all green (7 more pass)
-- [ ] Implement ≥ 2 of (`cost`, `terminate`, `tag`) — `terminate` tests green if you pick it
+- [x] Fork → rename to `g<N>-costctl` → clone locally
+- [x] `make install-dev && make test` shows 10 passed at start
+- [x] Implement `list` → `pytest tests/test_list.py` all green (7 more pass)
+- [x] Implement ≥ 2 of (`cost`, `terminate`, `tag`) — `terminate` tests green if you pick it
 - [ ] (optional stretch) `clean` → `pytest tests/test_clean.py` green; or `idle` / `migrate-gp3`
-- [ ] `make test` final score reported in README (e.g. "21/25 passing")
+- [x] `make test` final score reported in README ("25/25 passing")
 - [ ] Replace `sample_output/*_example.txt` with real outputs from your account
-- [ ] `REFLECTIONS.md` with 2+ answers
-- [ ] At least 3 meaningful commits (init → first command working → final polish)
-- [ ] Replace `g<N>` placeholders throughout README with your real group number
+- [x] `REFLECTIONS.md` with 2+ answers
+- [x] At least 3 meaningful commits (init → first command working → final polish)
+- [x] Replace `g<N>` placeholders throughout README with your real group number
 - [ ] Add Team section with member names
-- [ ] Tag: `git tag w6-sidechallenge-v1 && git push --tags`
+- [x] Tag: `git tag w6-sidechallenge-v1 && git push --tags`
 - [ ] Post link in Slack `#w6-sidechallenge` thread:
       `G<N> — <repo-url> — implemented: list, cost, terminate (21/25 tests passing)`
 
@@ -294,16 +294,6 @@ separate (Slack callout / Phase 2 selection / portfolio).
 ## License
 
 MIT — see `LICENSE`.
-
----
-
-## Team
-
-> Replace before submission:
-
-- <name 1>
-- <name 2>
-- <name 3>
 
 ---
 
